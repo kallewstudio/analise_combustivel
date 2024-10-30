@@ -1,0 +1,36 @@
+<!-- templates/selecionar_filtro.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecionar Filtro</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Selecionar Filtro</h2>
+    <form method="get" action="{% url 'filtrar_dados' %}">
+        <div class="form-group">
+            <label for="estado">Estado:</label>
+            <select name="estado" id="estado" class="form-control">
+                <option value="">-- Selecione um Estado --</option>
+                {% for estado in estados %}
+                    <option value="{{ estado }}">{{ estado }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cidade">Cidade:</label>
+            <select name="cidade" id="cidade" class="form-control">
+                <option value="">-- Selecione uma Cidade --</option>
+                {% for cidade in cidades %}
+                    <option value="{{ cidade }}">{{ cidade }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </form>
+</div>
+</body>
+</html>
