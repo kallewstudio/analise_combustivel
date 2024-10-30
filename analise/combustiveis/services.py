@@ -6,12 +6,14 @@ from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.exc import GeocoderTimedOut
 
+
 def normalizar_nome_coluna(nome):
     # Remove acentos e caracteres especiais e converte para ASCII "cru"
     nome = unicodedata.normalize('NFKD', nome).encode('ascii', 'ignore').decode('utf-8')
     # Substitui caracteres não alfanuméricos por underscore (_)
     nome = re.sub(r'\W+', '_', nome)
     return nome.lower()
+
 
 def tratar_dados_excel(file_path, limite=30):
     try:
@@ -76,7 +78,8 @@ def tratar_dados_excel(file_path, limite=30):
                         coordenadas = geocode(endereco_alternativo, timeout=10)
                         if coordenadas:
                             print(f"Endereço alternativo: {endereco_alternativo}")
-                            print(f"Coordenadas: Latitude = {coordenadas.latitude}, Longitude = {coordenadas.longitude}")
+                            print(
+                                f"Coordenadas: Latitude = {coordenadas.latitude}, Longitude = {coordenadas.longitude}")
                     except GeocoderTimedOut:
                         print(f"Timeout ao processar o endereço alternativo: {endereco_alternativo}")
 
@@ -87,7 +90,8 @@ def tratar_dados_excel(file_path, limite=30):
                         coordenadas = geocode(endereco_cep, timeout=10)
                         if coordenadas:
                             print(f"Endereço via CEP: {endereco_cep}")
-                            print(f"Coordenadas: Latitude = {coordenadas.latitude}, Longitude = {coordenadas.longitude}")
+                            print(
+                                f"Coordenadas: Latitude = {coordenadas.latitude}, Longitude = {coordenadas.longitude}")
                     except GeocoderTimedOut:
                         print(f"Timeout ao processar o CEP: {endereco_cep}")
 
@@ -109,3 +113,5 @@ def tratar_dados_excel(file_path, limite=30):
 
     except Exception as e:
         return False, str(e)
+
+

@@ -36,6 +36,15 @@
         </div>
     {% endif %}
 
+    <h3 class="text-center mt-5">Mapa de Localizações</h3>
+    {% if grafico_html %}
+        <div class="mt-4">
+            {{ grafico_html|safe }}
+        </div>
+    {% else %}
+        <p class="text-center">Nenhuma coordenada disponível para exibir no mapa.</p>
+    {% endif %}
+
     <div class="text-center mt-4">
         <a href="{% url 'upload_file' %}" class="btn btn-primary">Voltar ao Upload</a>
     </div>
