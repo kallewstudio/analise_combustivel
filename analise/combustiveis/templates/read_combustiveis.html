@@ -12,13 +12,15 @@
     <h1 class="my-4">Dados de Combustíveis</h1>
 
 
+    <!-- templates/read_combustiveis.html -->
+
     <form method="get">
         <div class="form-group">
             <label for="produto">Tipo de Combustível</label>
-            <select name="PRODUTO" id="produto" class="form-control">
+            <select name="produto" id="produto" class="form-control">
                 <option value="">-- Selecione um Produto --</option>
                 {% for p in produtos_unicos %}
-                <option value="{{ p }}" {% if p == produto %}selected{% endif %}>{{ p }}</option>
+                <option value="{{ p }}" {% if p== produto %}selected{% endif %}>{{ p }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -26,30 +28,12 @@
     </form>
 
 
-    <!-- Tabela de Dados Filtrados -->
-    <table class="table table-bordered table-striped mt-4">
-        <thead class="thead-dark">
-        <tr>
-            {% for coluna in colunas %}
-            <th>{{ coluna }}</th>
-            {% endfor %}
-        </tr>
-        </thead>
-        <tbody>
-        {% for linha in dados %}
-        <tr>
-            {% for valor in linha.values %}
-            <td>{{ valor }}</td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <!-- Mapa Plotly -->
+    <h2>Mapa dos Endereços Filtrados</h2>
+    <div>
+        {{ grafico_html|safe }}
+    </div>
 
-
-    <!-- Gráfico Gerado -->
-    <h2>Gráfico</h2>
-    <img src="data:image/png;base64,{{ grafico }}" alt="Gráfico de Combustível" class="img-fluid">
 </div>
 </body>
 </html>
