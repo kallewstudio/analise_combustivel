@@ -1,0 +1,44 @@
+<!-- templates/exibir_dados.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Tratados</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Dados Tratados do Arquivo</h2>
+
+    {% if dados %}
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    {% for coluna in colunas %}
+                        <th>{{ coluna }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for linha in dados %}
+                    <tr>
+                        {% for valor in linha.values %}
+                            <td>{{ valor }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning text-center">
+            Nenhum dado encontrado para exibição.
+        </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{% url 'upload_file' %}" class="btn btn-primary">Voltar ao Upload</a>
+    </div>
+</div>
+</body>
+</html>
